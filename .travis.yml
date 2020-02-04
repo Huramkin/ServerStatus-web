@@ -13,7 +13,8 @@ jobs:
     - npx semantic-release
     deploy:
       provider: script
-      script: rsync -e "ssh -p $deploy_port" -rz --delete-after --excude="json/stats.json" --quiet $TRAVIS_BUILD_DIR/sergate/ $deploy_user@$deploy_host:/data/sites/sergate/
+      skip_cleanup: true
+      script: rsync -e "ssh -p $deploy_port" -rz --delete-after --excude "json" --quiet $TRAVIS_BUILD_DIR/sergate/ $deploy_user@$deploy_host:/data/sites/sergate/
        
 
 addons:
